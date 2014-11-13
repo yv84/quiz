@@ -1,2 +1,3 @@
-from app import app
-app.run(debug = True)
+# python -m flask --app=app [command]
+# python -m flask --app=app --debug run
+# python -m flask --app=app initdb
