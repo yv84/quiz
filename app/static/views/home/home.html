@@ -1,12 +1,30 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-            <h1>Welcome to Job_quiz!</h1>
-            <p class="lead">This is your homepage, ready for editing</p>
+            <h1>{{askId}}</h1>
+            <div ng-repeat="item in asks">
+              <span ng-if="item.number==askId">
+                {{item.number}} :
+                <p>
+                    <p ng-repeat="answer in item.answers">
 
-            <p>
-             <span translate="main.like">If you like this Angular-Flask generator, please give us a star at </span>&nbsp;<a href="https://github.com/rayokota/generator-angular-flask" target="_blank" translate="main.github">Github</a>!
-            </p>
+
+  <span ng-if="answer.correct">
+    <a href="#"
+        class="btn btn-block answer_true">{{answer.answer}}</a>
+  </span> <!-- ng-switch-when -->
+  <span ng-if="answer.correct==false">
+    <a href="#"
+        class="btn btn-block answer_false">{{answer.answer}}</a>
+  </span> <!-- ng-switch-when -->
+                    </p>
+                </p>
+              </span>
+            </div>
+
+            <p>-----------------------------------</p>
+  <p ><a id="prev" ng-href="{{ back }}" class="btn btn-info">Предыдущий (q)</a>
+  <a id="next" ng-href="{{ next }}" class="btn btn-info">Следующий (w)</a></p>
         </div>
     </div>
 </div>

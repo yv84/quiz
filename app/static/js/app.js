@@ -2,8 +2,8 @@
 angular.module('job_quiz', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/home/home.html', 
+      .when('/ask/:askId', {
+        templateUrl: 'views/home/home.html',
         controller: 'HomeController'})
-      .otherwise({redirectTo: '/'});
+      .otherwise({redirectTo: '/ask/1'});
   }]);

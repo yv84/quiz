@@ -3,3 +3,12 @@ body {
   padding: 10px;
   background-color: #ECF0F1;
 }
+.btn{
+    white-space:normal !important;
+    max-width:800px;
+}
+.label_choice {
+    color: black;
+    background: #ddf;
+    /*font-size: 200%;*/
+}
