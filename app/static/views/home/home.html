@@ -5,7 +5,7 @@
             <div ng-repeat="item in asks">
               <span ng-if="item.number==askId">
                 {{item.number}} :
-                <p>
+                <div id="answers">
                     <p ng-repeat="answer in item.answers">
 
 
@@ -18,7 +18,7 @@
         class="btn btn-block answer_false">{{answer.answer}}</a>
   </span> <!-- ng-switch-when -->
                     </p>
-                </p>
+                </div>
               </span>
             </div>
 
