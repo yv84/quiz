@@ -1,23 +1,25 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-            <h1>{{askId}}</h1>
+            <div ask="true_class"
+                 asks="asks"
+                 askid="askid"
+                 tr="true_class"
+                 f="false_class">
+            </div>
+
             <div ng-repeat="item in asks">
-              <span ng-if="item.number==askId">
-                {{item.number}} :
+              <span ng-if="item.number==askid">
                 <div id="answers">
-                    <p ng-repeat="answer in item.answers">
-
-
-  <span ng-if="answer.correct">
-    <a href="#"
-        class="btn btn-block answer_true">{{answer.answer}}</a>
-  </span> <!-- ng-switch-when -->
-  <span ng-if="answer.correct==false">
-    <a href="#"
-        class="btn btn-block answer_false">{{answer.answer}}</a>
-  </span> <!-- ng-switch-when -->
-                    </p>
+                  <div ng-repeat="answer in item.answers"
+                    answer
+                    descr="test"
+                    correctness="{{answer.correct}}"
+                    index="{{$index+1}}"
+                    askid="askid"
+                    tr="true_class"
+                    f="false_class">
+                  </div>
                 </div>
               </span>
             </div>
