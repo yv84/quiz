@@ -13,12 +13,13 @@
                 <div id="answers">
                   <div ng-repeat="answer in item.answers"
                     answer
-                    descr="test"
+                    descr="{{answer.answer}}"
                     correctness="{{answer.correct}}"
                     index="{{$index+1}}"
                     askid="askid"
                     tr="true_class"
-                    f="false_class">
+                    f="false_class"
+                    numeralkeys="setNumeralKeys(index, cb)">
                   </div>
                 </div>
               </span>
