@@ -4,6 +4,7 @@ angular.module('job_quiz')
       asks = [
         {
         number: 1,
+        question: "ask1",
         answers: [
           {
             answer: 'answers1',
@@ -28,25 +29,26 @@ angular.module('job_quiz')
         ]},
         {
         number: '2',
+        question: "ask2",
         answers: [
           {
-            answer: 'answers1',
+            answer: 'answers21',
             correct: false
           },
           {
-            answer: 'answers2',
+            answer: 'answers22',
             correct: true
           },
           {
-            answer: 'answers3',
+            answer: 'answers23',
             correct: false
           },
           {
-            answer: 'answers4',
+            answer: 'answers24',
             correct: false
           },
           {
-            answer: 'answers5',
+            answer: 'answers25',
             correct: false
           }
         ]}

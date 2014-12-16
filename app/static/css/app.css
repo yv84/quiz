@@ -4,9 +4,29 @@ body {
   background-color: #ECF0F1;
 }
 
-.btn{
+
+.btn {
+
+}
+
+div.answer {
+    margin: auto;
+    margin: 5px;
+}
+
+a.answer {
     white-space:normal !important;
     max-width:800px;
+    color: black;
+    text-decoration: none;
+    padding: 2px;
+    display: inline-block;
+    text-align: left;
+    border: 1px solid transparent;
+}
+
+.answer:hover {
+    color: blue;
 }
 
 .label_choice {

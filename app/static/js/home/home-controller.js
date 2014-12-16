@@ -1,3 +1,6 @@
+(function () {
+    "use strict";
+
 angular.module('job_quiz')
 
 .controller('HomeController', [
@@ -10,6 +13,20 @@ angular.module('job_quiz')
     $scope.back = "#/ask/" + (+$scope.askid-1);
     $scope.next = "#/ask/" + (+$scope.askid+1);
     $scope.asks = HomeFactory;
+    $scope.ask = (function () {
+        var _ask = $scope.asks[+$scope.askid-1];
+        if (_ask) {return _ask}
+        else return {
+            number: '?',
+            question: "",
+            answers: [
+                {
+                    answer: '',
+                    correct: false
+                }
+            ]
+        };
+    })();
 
     $scope.number_keys = {};
     $scope.setNumeralKeys = function (index, cb) {
@@ -41,38 +58,34 @@ angular.module('job_quiz')
         }
       })
 
-    route_back = function () {
+    var route_back = function () {
       $scope.askid = +$scope.askid - 1;
-      path = "/ask/" + (+$scope.askid);
+      var path = "/ask/" + (+$scope.askid);
       $location.path(path);
       $scope.back = "#/ask/" + (+$scope.askid-1);
       return false;
     }
 
-    route_next = function () {
+    var route_next = function () {
       $scope.askid = +$scope.askid + 1;
-      path = "/ask/" + (+$scope.askid);
+      var path = "/ask/" + (+$scope.askid);
       $location.path(path);
       $scope.next = "#/ask/" + (+$scope.askid+1);
       return false;
     }
-
-    $scope.true_class = "answered_true";
-    $scope.false_class = "answered_false";
 }])
 
 
 .directive('ask', function(){
   return {
     scope: {
-      askid: "&",
-      tr: "&",
-      f: "&",
-      asks: "&",
+        askid: "&",
+        askobj: "&",
     },
     restrict: 'A',
-    template: '<h1>ASK: {{askid()}}</h1>',
+    templateUrl: 'views/home/ask.html',
     controller: function ($scope) {
+        $scope.question = $scope.askobj().question;
     },
     link: function (scope, element, attrs) {
     }
@@ -84,29 +97,28 @@ angular.module('job_quiz')
 .directive('answer', function(){
   return {
     scope: {
-      askid: "&",
-      tr: "&",
-      f: "&",
       descr: "@",
       correctness: "@",
       index: "@",
       numeralkeys: "&",
     },
     restrict: 'A',
-    template: '<a href="#" class="btn btn-block answer_true">{{index}}: {{descr}}</a>',
+    templateUrl: 'views/home/answer.html',
     controller: function ($scope) {
+        $scope.answered_true = "answered_true";
+        $scope.answered_false = "answered_false";
         $scope.activate = function (element) {
             if ($scope.correctness === "true") {
-                element.addClass($scope.tr);
+                element.addClass($scope.answered_true);
             } else {
-                element.addClass($scope.f);
+                element.addClass($scope.answered_false);
             }
         };
         $scope.deactivate = function (element) {
             if ($scope.correctness === "true") {
-                element.removeClass($scope.tr);
+                element.removeClass($scope.answered_true);
             } else {
-                element.removeClass($scope.f);
+                element.removeClass($scope.answered_false);
             }
         }
     },
@@ -115,7 +127,7 @@ angular.module('job_quiz')
             scope.activate(element);
             return false;
         });
-        hotKeyCallback = function () {
+        var hotKeyCallback = function () {
             scope.activate(element);
         }
         scope.numeralkeys({index: scope.index,
@@ -124,3 +136,7 @@ angular.module('job_quiz')
     }
   };
 })
+
+
+
+}());

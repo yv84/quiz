@@ -1,11 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-            <div ask="true_class"
-                 asks="asks"
-                 askid="askid"
-                 tr="true_class"
-                 f="false_class">
+            <div ask
+                askobj="ask"
+                askid="askid">
             </div>
 
             <div ng-repeat="item in asks">
@@ -16,18 +14,15 @@
                     descr="{{answer.answer}}"
                     correctness="{{answer.correct}}"
                     index="{{$index+1}}"
-                    askid="askid"
-                    tr="true_class"
-                    f="false_class"
                     numeralkeys="setNumeralKeys(index, cb)">
-                  </div>
+                  </div> <!-- ng-repeat -->
                 </div>
               </span>
-            </div>
+            </div> <!-- ng-repeat -->
 
             <p>-----------------------------------</p>
-  <p ><a id="prev" ng-href="{{ back }}" class="btn btn-info">Предыдущий (q)</a>
-  <a id="next" ng-href="{{ next }}" class="btn btn-info">Следующий (w)</a></p>
-        </div>
-    </div>
-</div>
+  <p ><a id="prev" ng-href="{{ back }}" class="btn btn-info btn-default">Предыдущий (q)</a>
+  <a id="next" ng-href="{{ next }}" class="btn btn-info btn-default">Следующий (w)</a></p>
+        </div> <!-- col-md-8 -->
+    </div> <!-- row -->
+</div> <!-- container-fluid -->
