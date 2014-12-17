@@ -1,6 +1,10 @@
 from app import app
 from flask import jsonify, send_from_directory
 
+
+from app.models.utils import convert_data
+
+
 @app.route('/')
 def root():
     return app.send_static_file('index.html')
@@ -26,57 +30,7 @@ def send_views(filename):
 
 @app.route('/ask.json')
 def ask():
-    data = asks = [
-        {
-        "number": 1,
-        "question": "ask1",
-        "answers": [
-            {
-              "answer": 'answers1',
-              "correct": False
-            },
-            {
-              "answer": 'answers2',
-              "correct": False
-            },
-            {
-              "answer": 'answers3',
-              "correct": False
-            },
-            {
-              "answer": 'answers4',
-              "correct": False
-            },
-            {
-              "answer": 'answers5',
-              "correct": True
-            }
-        ]},
-        {
-        "number": '2',
-        "question": "ask2",
-        "answers": [
-            {
-              "answer": 'answers21',
-              "correct": False
-            },
-            {
-              "answer": 'answers22',
-              "correct": True
-            },
-            {
-              "answer": 'answers23',
-              "correct": False
-            },
-            {
-              "answer": 'answers24',
-              "correct": False
-            },
-            {
-              "answer": 'answers25',
-              "correct": False
-            }
-        ]},
-        ];
+    with open("data/example.txt", "r") as f_data:
+        data = convert_data(f_data.read())
     json_data = jsonify(asks=data)
     return json_data
