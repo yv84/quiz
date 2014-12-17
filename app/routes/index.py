@@ -1,5 +1,5 @@
 from app import app
-from flask import jsonify, send_from_directory
+from flask import jsonify, send_from_directory, redirect
 
 
 from app.models.utils import convert_data
@@ -7,6 +7,18 @@ from app.models.utils import convert_data
 
 @app.route('/')
 def root():
+    return redirect("/quiz1", code=302)
+
+@app.route('/quiz1')
+def quiz1():
+    return app.send_static_file('index.html')
+
+@app.route('/quiz2')
+def quiz2():
+    return app.send_static_file('index.html')
+
+@app.route('/quiz3')
+def quiz3():
     return app.send_static_file('index.html')
 
 
@@ -28,8 +40,24 @@ def send_views(filename):
 
 
 
-@app.route('/ask.json')
-def ask():
+@app.route('/quiz1/ask.json')
+def quiz1_ask():
+    with open("data/example.txt", "r") as f_data:
+        data = convert_data(f_data.read())
+    json_data = jsonify(asks=data)
+    return json_data
+
+
+@app.route('/quiz2/ask.json')
+def quiz2_ask():
+    with open("data/example.txt", "r") as f_data:
+        data = convert_data(f_data.read())
+    json_data = jsonify(asks=data)
+    return json_data
+
+
+@app.route('/quiz3/ask.json')
+def quiz3_ask():
     with open("data/example.txt", "r") as f_data:
         data = convert_data(f_data.read())
     json_data = jsonify(asks=data)

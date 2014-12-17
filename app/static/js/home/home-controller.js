@@ -4,15 +4,14 @@
 angular.module('job_quiz')
 
 .controller('HomeController', [
-  '$scope', '$routeParams', '$location', '$timeout',
+  '$scope', '$routeParams', '$location',
   'HomeFactory', 'hotkeys',
     function (
-  $scope, $routeParams, $location, $timeout,
+  $scope, $routeParams, $location,
   HomeFactory, hotkeys) {
     $scope.askid = $routeParams.askId;
     $scope.back = "#/ask/" + (+$scope.askid-1);
     $scope.next = "#/ask/" + (+$scope.askid+1);
-    // $scope.asks = HomeFactory;
     HomeFactory.list(function(asks) {
         $scope.asks = asks["asks"];
 
